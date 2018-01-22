@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <title>Date Estimate App</title>
+    <meta name="viewport" content="width= device-width, initial-scale= 1">
+    <link rel="stylesheet" href="css/bootstrap.min.css">
+    <style media="screen">
+
+      body {
+        font-family: cursive;
+		
+      }
+
+      a {
+        text-decoration: none;
+        color: green;
+      }
+
+      #output {
+        display: none;
+      }
+    </style>
+  </head>
+  <body class= "bg-dark">
+
+    <div class="container mt-5 text-white">
+      <div class="card bg-dark border-success p-5">
+
+        <span><a href="https://strongsoda.github.io/myPortfolio/site/">by Imran Khan</span></a>
+
+        <h1 class="mt-5">How long has it been?</h1>
+        <p>Enter two dates and get an estimate of time elapsed.</p>
+        <h4 class="mt-4 mb-3">From</h4>
+        <input type="date" class="form-control form-control-lg" id="date1" onchange = 'estimate()'>
+        <h4 class="mt-3 mb-3">Upto</h4>
+        <input type="date" class="form-control form-control-lg" id="date2" onchange = 'estimate()'>
+        <div class="card-body">
+         <div class="card-title" id="output">
+           <h5>Time elapsed :</h5>
+         </div>
+         <div class="card-text" id="answer">
+         </div>
+        </div>
+      </div>
+    </div>
+
+    <script type="text/javascript">
+
+      let output = document.querySelector('#output');
+
+      let answer = document.querySelector('#answer');
+
+      function estimate() {
+
+        let date1 = document.querySelector('#date1');
+
+        let date2 = document.querySelector('#date2');
+
+        let d1 =date1.value;
+
+        let d2 = date2.value;
+
+        if (d1 != '' && d2 != '') {
+
+          console.log(d1);
+          console.log(d2);
+
+          output.style.display = 'block' ;
+
+          let d1Array = d1.split('-');
+          let d2Array = d2.split('-');
+
+          console.log(d1Array);
+          console.log(d2Array);
+
+
+          /* y1 = y2 */
+          if (d1Array[0] == d2Array[0]) {
+
+            /* m1 == m2 */
+            if (d1Array[1] == d2Array[1]) {
+
+              /* d1 ==d2 */
+              if (d1Array[2] == d2Array[2]){
+
+                  answer.innerText = '0 days';
+                  console.log(answer.innerText);
+
+              } else { /* d1 != d2 */
+
+                answer.innerText = d2Array[2] - d1Array[2] + ' day(s)';
+                console.log(answer.innerText);
+              }
+
+            } else { /* m1 != m2 */
+
+              /* d1 == d2 */
+              if (d1Array[2] == d2Array[2]) {
+
+                answer.innerText = d2Array[1] - d1Array[1] + ' month(s)';
+                console.log(answer.innerText);
+
+              } else { /* d1 != d2 */
+
+                answer.innerText = (d2Array[1] - d1Array[1]) + ' month(s) '
+                + (d2Array[2] - d1Array[2]) + ' day(s)';
+                console.log(answer.innerText);
+              }
+            }
+
+          } else { /* y1 != y2 */
+
+            /* m1 == m2 */
+            if (d1Array[1] == d2Array[1]) {
+
+              /* d1 == d2 */
+              if (d1Array[2] == d2Array[2]){
+
+                  answer.innerText = d2Array[0] - d1Array[0] + ' year(s)';
+                  console.log(answer.innerText);
+
+              } else { /* d1 != d2 */
+
+                answer.innerText = d2Array[0] - d1Array[0] + ' year(s) '
+                + (d2Array[2] - d1Array[2]) + ' day(s)';
+                console.log(answer.innerText);
+              }
+
+            } else { /* m1 != m2 */
+
+              /* d1 == d2 */
+              if (d1Array[2] == d2Array[2]) {
+
+                answer.innerText = d2Array[0] - d1Array[0] + ' year(s) '
+                + (d2Array[1] - d1Array[1]) + ' month(s)';
+                console.log(answer.innerText);
+
+              } else { /* d1 != d2 */
+
+                answer.innerText = d2Array[0] - d1Array[0] + ' year(s) '
+                + (d2Array[1] - d1Array[1]) + ' month(s) '
+                 + (d2Array[2] - d1Array[2]) + ' day(s)';
+                console.log(answer.innerText);
+              }
+            }
+          }
+        }
+
+      }
+
+
+    </script>
+
+  </body>
+</html>
